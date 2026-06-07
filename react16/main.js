@@ -5,15 +5,15 @@ import {
   render,
   require_jsx_runtime,
   require_react
-} from "./chunk-I2OYHXFH.js";
-import "./chunk-XJLBVLLP.js";
+} from "./chunk-66VJQABC.js";
+import "./chunk-3VI6RKZ6.js";
 import {
   default_default
-} from "./chunk-FYOWE623.js";
+} from "./chunk-CLNOWGEJ.js";
 import "./chunk-EQ2B2W73.js";
 import {
   __toESM
-} from "./chunk-24OICD5T.js";
+} from "./chunk-DO7PIA5W.js";
 
 // src/main.tsx
 var import_react = __toESM(require_react());
@@ -22,9 +22,9 @@ var import_react = __toESM(require_react());
 var package_default = {
   name: "univer",
   type: "module",
-  version: "0.21.1",
+  version: "0.25.0",
   private: true,
-  packageManager: "pnpm@10.33.0",
+  packageManager: "pnpm@10.33.4",
   author: "DreamNum Co., Ltd. <developer@univer.ai>",
   license: "Apache-2.0",
   funding: {
@@ -64,8 +64,10 @@ var package_default = {
     test: "turbo test -- --passWithNoTests",
     coverage: "turbo coverage -- --passWithNoTests",
     "analyze:build": "tsx ./scripts/build-analysis.ts",
-    build: "turbo build --filter=!./common/*",
-    "build:ci": "turbo build --filter=!./common/*",
+    build: "pnpm run build:plugins && pnpm run build:presets",
+    "build:ci": "pnpm run build",
+    "build:plugins": "turbo build --filter '!./common/*' --filter '!./presets/**'",
+    "build:presets": "turbo build --filter './presets/**...' --filter '!./presets/**' && turbo build --filter './presets/**'",
     "build:demo": "pnpm --filter univer-examples build:demo",
     "build:e2e": "pnpm --filter univer-examples build:e2e",
     "serve:e2e": "serve ./examples/local",
@@ -76,46 +78,46 @@ var package_default = {
     release: "release-it"
   },
   devDependencies: {
-    "@antfu/eslint-config": "^7.7.3",
-    "@commitlint/cli": "^20.5.0",
-    "@commitlint/config-conventional": "^20.5.0",
-    "@eslint-react/eslint-plugin": "^2.13.0",
-    "@eslint/compat": "^2.0.3",
+    "@antfu/eslint-config": "^9.0.0",
+    "@commitlint/cli": "^21.0.2",
+    "@commitlint/config-conventional": "^21.0.2",
+    "@eslint-react/eslint-plugin": "^5.8.12",
+    "@eslint/compat": "^2.1.0",
     "@playwright/test": "^1.57.0",
     "@release-it-plugins/workspaces": "^5.0.3",
     "@release-it/conventional-changelog": "^10.0.6",
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^25.6.0",
-    "@types/react": "19.2.14",
+    "@types/node": "^25.9.1",
+    "@types/react": "19.2.16",
     "@types/react-dom": "19.2.3",
     "@univerjs-infra/shared": "workspace:*",
     "@univerjs/design": "workspace:*",
-    eslint: "10.2.0",
+    eslint: "^10.4.1",
     "eslint-plugin-format": "^2.0.1",
     "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "7.0.1",
+    "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.2",
-    "fs-extra": "^11.3.4",
+    "fs-extra": "^11.3.5",
     husky: "^9.1.7",
-    "lint-staged": "^16.4.0",
-    "posthog-node": "^5.29.2",
-    react: "19.2.5",
-    "react-dom": "19.2.5",
+    "lint-staged": "^17.0.7",
+    "posthog-node": "^5.36.2",
+    react: "19.2.7",
+    "react-dom": "19.2.7",
     "release-it": "^19.2.4",
     serve: "^14.2.6",
     tailwindcss: "3.4.18",
-    tsx: "^4.21.0",
-    turbo: "^2.9.6",
-    typescript: "^6.0.2",
-    vitest: "^4.1.4"
+    tsx: "^4.22.3",
+    turbo: "^2.9.16",
+    typescript: "^6.0.3",
+    vitest: "^4.1.8"
   },
   pnpm: {
     overrides: {
-      "@types/react": "19.2.14",
+      "@types/react": "19.2.16",
       "@types/react-dom": "19.2.3",
       "basic-ftp": "5.2.0",
-      react: "19.2.5",
-      "react-dom": "19.2.5"
+      react: "19.2.7",
+      "react-dom": "19.2.7"
     }
   },
   "lint-staged": {
@@ -140,6 +142,16 @@ var demos = [
     "dir": "docs-uniscript",
     "href": "./docs-uniscript/",
     "title": "Docs Uniscript"
+  },
+  {
+    "dir": "preset-docs-core",
+    "href": "./preset-docs-core/",
+    "title": "Preset Docs Core"
+  },
+  {
+    "dir": "preset-sheets-core",
+    "href": "./preset-sheets-core/",
+    "title": "Preset Sheets Core"
   },
   {
     "dir": "sheets",
@@ -225,11 +237,11 @@ if (true) {
     // eslint-disable-next-line node/prefer-global/process
     NODE_ENV: "production",
     // eslint-disable-next-line node/prefer-global/process
-    GIT_COMMIT_HASH: "7ba9b6a",
+    GIT_COMMIT_HASH: "4ded25f",
     // eslint-disable-next-line node/prefer-global/process
     GIT_REF_NAME: "dev",
     // eslint-disable-next-line node/prefer-global/process
-    BUILD_TIME: "2026-04-28T10:18:32.249Z"
+    BUILD_TIME: "2026-06-07T08:03:01.610Z"
   });
 }
 function DemoList({ items }) {
